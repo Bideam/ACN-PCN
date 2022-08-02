@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AIRCRAFTTYPES>
+    <AIRCRAFTTYPE NAME="B737-700W" MAXWEIGHT="70307" MINWEIGHT="36287">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="41" MINPCN="19"></PCN>
+            <PCN NAME="R/B" MAXPCN="43" MINPCN="20"></PCN>
+            <PCN NAME="R/C" MAXPCN="45" MINPCN="21"></PCN>
+            <PCN NAME="R/D" MAXPCN="47" MINPCN="22"></PCN>
+            <PCN NAME="F/A" MAXPCN="36" MINPCN="17"></PCN>
+            <PCN NAME="F/B" MAXPCN="38" MINPCN="17"></PCN>
+            <PCN NAME="F/C" MAXPCN="42" MINPCN="18"></PCN>
+            <PCN NAME="F/D" MAXPCN="47" MINPCN="21"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="B737-700HH" MAXWEIGHT="72575" MINWEIGHT="40823">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="42" MINPCN="21"></PCN>
+            <PCN NAME="R/B" MAXPCN="44" MINPCN="22"></PCN>
+            <PCN NAME="R/C" MAXPCN="46" MINPCN="24"></PCN>
+            <PCN NAME="R/D" MAXPCN="48" MINPCN="24"></PCN>
+            <PCN NAME="F/A" MAXPCN="37" MINPCN="19.6"></PCN>
+            <PCN NAME="F/B" MAXPCN="38.5" MINPCN="19.6"></PCN>
+            <PCN NAME="F/C" MAXPCN="43.5" MINPCN="21.5"></PCN>
+            <PCN NAME="F/D" MAXPCN="49" MINPCN="24.7"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="B737-800W" MAXWEIGHT="79243" MINWEIGHT="43459">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="49" MINPCN="25"></PCN>
+            <PCN NAME="R/B" MAXPCN="52" MINPCN="27"></PCN>
+            <PCN NAME="R/C" MAXPCN="54" MINPCN="28"></PCN>
+            <PCN NAME="R/D" MAXPCN="56" MINPCN="30"></PCN>
+            <PCN NAME="F/A" MAXPCN="43" MINPCN="22"></PCN>
+            <PCN NAME="F/B" MAXPCN="45" MINPCN="23"></PCN>
+            <PCN NAME="F/C" MAXPCN="50" MINPCN="25"></PCN>
+            <PCN NAME="F/D" MAXPCN="55" MINPCN="29"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="B737-8" MAXWEIGHT="82417" MINWEIGHT="43091">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="52" MINPCN="24"></PCN>
+            <PCN NAME="R/B" MAXPCN="54" MINPCN="25"></PCN>
+            <PCN NAME="R/C" MAXPCN="57" MINPCN="27"></PCN>
+            <PCN NAME="R/D" MAXPCN="59" MINPCN="28"></PCN>
+            <PCN NAME="F/A" MAXPCN="45" MINPCN="21"></PCN>
+            <PCN NAME="F/B" MAXPCN="48" MINPCN="22"></PCN>
+            <PCN NAME="F/C" MAXPCN="53" MINPCN="23"></PCN>
+            <PCN NAME="F/D" MAXPCN="58" MINPCN="27"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="B757-200" MAXWEIGHT="109300" MINWEIGHT="57000">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="27" MINPCN="11"></PCN>
+            <PCN NAME="R/B" MAXPCN="32" MINPCN="13"></PCN>
+            <PCN NAME="R/C" MAXPCN="38" MINPCN="16"></PCN>
+            <PCN NAME="R/D" MAXPCN="44" MINPCN="18"></PCN>
+            <PCN NAME="F/A" MAXPCN="29" MINPCN="13"></PCN>
+            <PCN NAME="F/B" MAXPCN="32" MINPCN="14"></PCN>
+            <PCN NAME="F/C" MAXPCN="39" MINPCN="15"></PCN>
+            <PCN NAME="F/D" MAXPCN="52" MINPCN="20"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="B787-8" MAXWEIGHT="228384" MINWEIGHT="172365">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="61" MINPCN="42"></PCN>
+            <PCN NAME="R/B" MAXPCN="71" MINPCN="49"></PCN>
+            <PCN NAME="R/C" MAXPCN="84" MINPCN="57"></PCN>
+            <PCN NAME="R/D" MAXPCN="96" MINPCN="66"></PCN>
+            <PCN NAME="F/A" MAXPCN="60" MINPCN="42"></PCN>
+            <PCN NAME="F/B" MAXPCN="66" MINPCN="45"></PCN>
+            <PCN NAME="F/C" MAXPCN="81" MINPCN="53"></PCN>
+            <PCN NAME="F/D" MAXPCN="106" MINPCN="73"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="B787-9" MAXWEIGHT="254692" MINWEIGHT="192777">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="65" MINPCN="46"></PCN>
+            <PCN NAME="R/B" MAXPCN="76" MINPCN="52"></PCN>
+            <PCN NAME="R/C" MAXPCN="90" MINPCN="61"></PCN>
+            <PCN NAME="R/D" MAXPCN="103" MINPCN="71"></PCN>
+            <PCN NAME="F/A" MAXPCN="66" MINPCN="47"></PCN>
+            <PCN NAME="F/B" MAXPCN="73" MINPCN="50"></PCN>
+            <PCN NAME="F/C" MAXPCN="88" MINPCN="58"></PCN>
+            <PCN NAME="F/D" MAXPCN="118" MINPCN="80"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+
+    <AIRCRAFTTYPE NAME="A321-251" MAXWEIGHT="89400" MINWEIGHT="47000">
+        <PCNS>
+            <PCN NAME="R/A" MAXPCN="57" MINPCN="27"></PCN>
+            <PCN NAME="R/B" MAXPCN="60" MINPCN="28"></PCN>
+            <PCN NAME="R/C" MAXPCN="62" MINPCN="30"></PCN>
+            <PCN NAME="R/D" MAXPCN="65" MINPCN="31"></PCN>
+            <PCN NAME="F/A" MAXPCN="50" MINPCN="24"></PCN>
+            <PCN NAME="F/B" MAXPCN="52" MINPCN="24"></PCN>
+            <PCN NAME="F/C" MAXPCN="58" MINPCN="26"></PCN>
+            <PCN NAME="F/D" MAXPCN="64" MINPCN="30"></PCN>
+        </PCNS>
+    </AIRCRAFTTYPE>
+</AIRCRAFTTYPES>

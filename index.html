@@ -1,0 +1,291 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="text/xml;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>ACN-PCN</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var PCNArray=[];
+        $(document).ready(function(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    InitData(this);
+                }
+            };
+            xhttp.open("GET", "/mydata.xml", true);
+            xhttp.send();
+        });
+        
+        function InitData(xml) {
+            var i;
+            var xmlDoc = xml.responseXML;
+            var x = xmlDoc.getElementsByTagName("AIRCRAFTTYPE");
+            for (i = 0; i <x.length; i++) { 
+                $('#aircrafttypePCN').append('<option value="'+x[i].getAttribute("NAME")+'">'+x[i].getAttribute("NAME")+'</option>');
+                $('#aircrafttypeWeight').append('<option value="'+x[i].getAttribute("NAME")+'">'+x[i].getAttribute("NAME")+'</option>');
+                pcns=x[i].getElementsByTagName("PCN");
+                for(j=0;j<pcns.length;j++){ 
+                    PCNArray.push({
+                        actName:x[i].getAttribute("NAME"),
+                        actMAXWeight:x[i].getAttribute("MAXWEIGHT"),
+                        actMINWeight:x[i].getAttribute("MINWEIGHT"),
+                        pcntName:pcns[j].getAttribute("NAME"),
+                        pcntMax:pcns[j].getAttribute("MAXPCN"),
+                        pcntMin:pcns[j].getAttribute("MINPCN")
+                    });
+                }   
+            } 
+        }
+            
+
+        function caculateWeightByPCN(){
+            var actype=$('#aircrafttypePCN').val();
+            var PCNType=$('#PCNTypePCN').val();
+            var PCNValue=parseFloat($('#PCN').val());
+            if(actype==0||PCNType==0){
+                alert("请选择机型或PCN类型");
+            }
+            else{
+                if(isNaN(PCNValue)){
+                    alert("请输入PCN值");
+                }
+                else{
+                    for(var i=0;i<PCNArray.length;i++){
+                        if(PCNArray[i].actName==actype&&PCNArray[i].pcntName==PCNType&&!isNaN(PCNValue)){
+                            if(PCNArray[i].pcntName.startsWith("R")){
+                                baseResult=Math.round(PCNArray[i].actMAXWeight-((PCNArray[i].pcntMax-PCNValue)*(PCNArray[i].actMAXWeight-PCNArray[i].actMINWeight)/(PCNArray[i].pcntMax-PCNArray[i].pcntMin)))
+                                improveResult=Math.round(PCNArray[i].actMAXWeight-((PCNArray[i].pcntMax-PCNValue*1.05)*(PCNArray[i].actMAXWeight-PCNArray[i].actMINWeight)/(PCNArray[i].pcntMax-PCNArray[i].pcntMin)))
+                                $('#PCNResult').html(baseResult+"  KG<br/>"+improveResult+" KG 上浮5%");
+                            }
+                            if(PCNArray[i].pcntName.startsWith("F")){
+                                baseResult=Math.round(PCNArray[i].actMAXWeight-((PCNArray[i].pcntMax-PCNValue)*(PCNArray[i].actMAXWeight-PCNArray[i].actMINWeight)/(PCNArray[i].pcntMax-PCNArray[i].pcntMin)))
+                                improveResult=Math.round(PCNArray[i].actMAXWeight-((PCNArray[i].pcntMax-PCNValue*1.1)*(PCNArray[i].actMAXWeight-PCNArray[i].actMINWeight)/(PCNArray[i].pcntMax-PCNArray[i].pcntMin)))
+                                $('#PCNResult').html(baseResult+"  KG<br/>"+improveResult+" KG 上浮10%");
+                            }
+                       
+                            
+                        }
+                    }
+                }
+            }    
+        }
+
+        function resetByPCN(){
+            $('#aircrafttypePCN').val(0);
+            $('#aircrafttypePCN').selectmenu('refresh');
+            $('#PCNTypePCN').val(0);
+            $('#PCNTypePCN').selectmenu('refresh');
+            $('#PCN').val("");
+            $('#PCNResult').html("");
+        }
+        function resetByWeight(){
+            $('#aircrafttypeWeight').val(0);
+            $('#aircrafttypeWeight').selectmenu('refresh');
+            $('#PCNTypeWeight').val(0);
+            $('#PCNTypeWeight').selectmenu('refresh');
+            $('#Weight').val("");
+            $('#weightResult').html("");
+        }
+
+        function caculatePCNByWeight(){
+            var actype=$('#aircrafttypeWeight').val();
+            var PCNType=$('#PCNTypeWeight').val();
+            var weightValue=parseFloat($('#Weight').val());
+            if(actype==0||PCNType==0){
+                alert("请选择机型或PCN类型");
+            }
+            else{
+                if(isNaN(weightValue)){
+                    alert("请输入重量值");
+                }
+                else{
+                    for(var i=0;i<PCNArray.length;i++){
+                        if(PCNArray[i].actName==actype&&PCNArray[i].pcntName==PCNType&&!isNaN(weightValue)){
+                            $('#weightResult').html(PCNArray[i].pcntMax-((PCNArray[i].actMAXWeight-weightValue)*(PCNArray[i].pcntMax-PCNArray[i].pcntMin)/(PCNArray[i].actMAXWeight-PCNArray[i].actMINWeight)).toFixed(1)+" "+PCNType);
+                        }
+                    }
+                }
+            }    
+        }
+  
+
+
+
+    </script>
+
+    
+    <div data-role="page">
+    	
+    
+        <div  data-role='header' style="font-size: 2em;">
+        <H1 style="margin: auto;">ACN-PCN计算</H1>
+        </div>
+        <CENTER>
+        <P>★★★★★请确保浏览器为IE6.0以上版本且javascript为可执行状态！★★★★★</P>
+        <H2><A name=CrsDist>依据PCN值计算重量</A> </H2>
+        <P>选择机型和PCN类型，输入PCN值(PCN值可为浮点数)，点击计算即可！</P>
+        <P></P>
+        <CENTER>
+        <form name="InputFormPCN" action="" method="get">
+            <table style="border:1px dashed gray; visibility: " data-role="table">
+            	<thead>
+            		<tr>
+            			<th>Aircraft Type:</th>
+            			<th>PCN Type:</th>
+            			<th>PCN Value:</th>
+            		</tr>
+            	</thead>
+            	<tbody>
+            		<tr>
+            			<td>
+            				<SELECT id="aircrafttypePCN" > 
+                                <OPTION value="0" selected>-----请选择-----</OPTION>
+                            </SELECT>
+            			</td>
+            			<td>
+            				<SELECT id="PCNTypePCN" > 
+                                <OPTION value="0" selected>-----请选择-----</OPTION>
+                                <OPTION value="R/A">R/A</OPTION>
+                                <OPTION value="R/B">R/B</OPTION>
+                                <OPTION value="R/C">R/C</OPTION>
+                                <OPTION value="R/D">R/D</OPTION>
+                                <OPTION value="F/A">F/A</OPTION>
+                                <OPTION value="F/B">F/B</OPTION>
+                                <OPTION value="F/C">F/C</OPTION>
+                                <OPTION value="F/D">F/D</OPTION>
+                            </SELECT>
+            			</td>
+            			<td>
+            				<input id="PCN" placeholder="请输入PCN值" style="height: 30px;">
+            			</td>
+            		</tr>
+            		<tr align="center">
+            			<td>
+            				<input type="button" value="计算" data-inline="true" onclick=caculateWeightByPCN()>
+                            <input type="button" value="重置" data-inline="true" onclick=resetByPCN()>
+            			</td>
+            		</tr>
+            	</tbody>
+            </table>
+        </FORM>
+        <P></P>
+        <P></P>
+        <TABLE style="border: 1px dashed gray;" data-role="table">
+            <tbody>
+            	<thead>
+	                <tr>
+	                    <th></th>
+	                    <th>计算结果:</th>
+	                    <th></th>
+	                </tr>
+              	</thead>
+              	<tbody>
+              		<tr style="height: 50px;">
+	                    <td></td>
+	                    <td><div id="PCNResult" style="color:blue;font-weight: bold;font-size: medium;"></div></td>
+	                    <td></td>
+                  </tr>
+              	</tbody>
+                  
+                
+            </tbody>
+        </TABLE>
+        <P>备注：本计算对结果采用四舍五入，请根据实际需要进行取舍</P>
+        <P></P>
+        <P></P>
+        <HR>
+        <CENTER>
+        <H2><a>依据重量计算PCN</a></H2>
+        <P>选择机型和PCN类型，输入重量值(重量单位可为浮点数，单位为KG)，点击计算即可！</P>
+        <P></P>
+        </CENTER>
+        <form name="InputFormWeight" action="" method="get">
+            <TABLE style="border: 1px dashed gray;" data-role="table">
+            	<thead>
+            		<tr>
+            			<th>Aircraft Type:</th>
+            			<th>PCN Type: </th>
+            			<th>Weight Value:</th>
+            		</tr>
+            		
+            	</thead>
+                <TBODY>
+                    <TR >
+                        
+                            
+                        <td>
+                            <SELECT id="aircrafttypeWeight" > 
+                                <OPTION value="0" selected>-----请选择-----</OPTION>
+                            </SELECT>
+                        </td>
+                        
+                        
+                            
+                        <td>
+                            <SELECT id="PCNTypeWeight"> 
+                                <OPTION value="0" selected>-----请选择-----</OPTION>
+                                <OPTION value="R/A">R/A</OPTION>
+                                <OPTION value="R/B">R/B</OPTION>
+                                <OPTION value="R/C">R/C</OPTION>
+                                <OPTION value="R/D">R/D</OPTION>
+                                <OPTION value="F/A">F/A</OPTION>
+                                <OPTION value="F/B">F/B</OPTION>
+                                <OPTION value="F/C">F/C</OPTION>
+                                <OPTION value="F/D">F/D</OPTION>
+                            </SELECT>
+                        </td>
+                    
+                        
+                            
+                        <td>
+                            <input id="Weight" placeholder="请输入重量值" style="height: 30px;">
+                        </td>
+                        
+                    </TR>
+                    <TR align="center" > 
+                        <TD colspan="9">
+                            <input type="button" value="计算" data-inline="true" onclick=caculatePCNByWeight()>
+                            <input type="button" value="重置" data-inline="true" onclick=resetByWeight()>
+                        </TD>
+                    </TR>
+                </TBODY>
+            </TABLE>
+        </FORM>
+        <P></P>
+        <P></P>
+        <TABLE style="border: 1px dashed gray;" data-role="table">
+        	<thead>
+        		<tr>
+        			<th></th>
+                    <th>计算结果:</th>
+                    <th></th>
+        		</tr>
+        	</thead>
+            <tbody>
+
+                    <tr style="height: 50px;">
+                    <td></td>
+                    <td><div id="weightResult" style="color:blue;font-weight: bold;font-size: medium;"></div></td>
+                    <td></td>
+                    </tr>
+                
+            </tbody>
+        </TABLE>
+        <P>备注：本计算对结果采用四舍五入，请根据实际需要进行取舍</P>
+        <P></P>
+        <P></P>
+        <P></P>
+        <P></P>
+        <P></P>
+        <footer style="height: 30px;margin-top: 0px;" data-role="footer"><div>copyright 2022©MF Studio</div></footer>
+	</div>
+    
+</body>
+</html>
