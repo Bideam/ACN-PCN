@@ -134,7 +134,7 @@
         <P></P>
         <CENTER>
         <form name="InputFormPCN" action="" method="get">
-            <table style="border:1px dashed gray; visibility: " data-role="table">
+            <table style="border:1px dashed gray; " data-role="table" class="ui-responsive">
             	<thead>
             		<tr>
             			<th>Aircraft Type:</th>
@@ -166,15 +166,22 @@
             				<input id="PCN" placeholder="请输入PCN值" style="height: 30px;">
             			</td>
             		</tr>
-            		<tr align="center">
-            			<td>
-            				<input type="button" value="计算" data-inline="true" onclick=caculateWeightByPCN()>
+<!--             		<tr align="center">
+
+            			<div>
+                            <input type="button" value="计算" data-inline="true" onclick=caculateWeightByPCN()>
                             <input type="button" value="重置" data-inline="true" onclick=resetByPCN()>
-            			</td>
-            		</tr>
+                        </div>
+            				
+            			
+            		</tr> -->
             	</tbody>
             </table>
         </FORM>
+        <div>
+            <input type="button" value="计算" data-inline="true" onclick=caculateWeightByPCN()>
+            <input type="button" value="重置" data-inline="true" onclick=resetByPCN()>
+        </div>
         <P></P>
         <P></P>
         <TABLE style="border: 1px dashed gray;" data-role="table">
@@ -207,7 +214,7 @@
         <P></P>
         </CENTER>
         <form name="InputFormWeight" action="" method="get">
-            <TABLE style="border: 1px dashed gray;" data-role="table">
+            <TABLE style="border: 1px dashed gray;" data-role="table" class="ui-responsive">
             	<thead>
             		<tr>
             			<th>Aircraft Type:</th>
@@ -249,15 +256,14 @@
                         </td>
                         
                     </TR>
-                    <TR align="center" > 
-                        <TD colspan="9">
-                            <input type="button" value="计算" data-inline="true" onclick=caculatePCNByWeight()>
-                            <input type="button" value="重置" data-inline="true" onclick=resetByWeight()>
-                        </TD>
-                    </TR>
+
                 </TBODY>
             </TABLE>
         </FORM>
+        <div>
+            <input type="button" value="计算" data-inline="true" onclick=caculatePCNByWeight()>
+            <input type="button" value="重置" data-inline="true" onclick=resetByWeight()>
+        </div>
         <P></P>
         <P></P>
         <TABLE style="border: 1px dashed gray;" data-role="table">
